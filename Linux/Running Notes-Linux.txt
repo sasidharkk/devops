@@ -1,0 +1,198 @@
+File Commands
+=============================
+
+touch file.txt
+
+cat – View file content
+
+cat file.txt
+
+cp – Copy file
+
+cp file1.txt file2.txt
+
+
+mv – Rename or move file
+
+mv oldname.txt newname.txt
+
+rm – Remove file
+
+rm file.txt
+
+remove all files
+
+rm -rf *
+
+wc – Count lines, words, characters in a file
+
+wc file.txt
+
+wc -l file.txt    # Lines only
+wc -c no of characters
+wc -w no of words
+
+
+diff – Compare content of two files
+
+diff file1.txt file2.txt
+
+cmp – Byte-by-byte comparison
+
+cmp file1.txt file2.txt
+
+ln file.txt hardlink.txt       # Hard link
+ln -s file.txt symlink.txt     # Symbolic link
+
+more / less – View file with pagination
+
+more file.txt
+less file.txt
+
+head / tail – View top/bottom of a file
+
+head -n 10 file.txt      # First 10 lines
+tail -n 10 file.txt      # Last 10 lines
+tail -f log.txt          # Real-time log view
+
+
+Directory Navigation & Viewing
+Command	Description
+======================================
+pwd	Print the current working directory
+
+ls	List contents of a directory
+
+ls -l	Long listing (permissions, ownership, size, modified time)
+
+ls -a	Show hidden files (starting with .)
+
+cd folder_name/	Change to a specific directory
+
+cd ..	Move up one level
+
+cd /	Go to root directory
+
+cd ~ or just cd	Go to home directory
+
+tree	Display directory structure in a tree format (may require installation)
+
+ Create, Rename, Move, Delete Folders
+=====================================
+Command	Description
+
+mkdir folder_name	Create a new directory
+
+mkdir -p dir1/dir2/dir3	Create nested directories
+
+mv old_folder new_folder	Rename or move a directory
+
+cp -r source_dir target_dir	Copy a directory recursively
+
+rm -r folder_name	Delete a directory recursively
+
+rmdir folder_name	Remove an empty directory
+
+ Permissions & Ownership
+=====================================================
+
+In Linux, file and folder permissions control who can read, write, or execute a file or directory. These permissions are critical for security and user access control.
+
+File & Folder Permissions 
+=======================================================
+Each file or directory has 3 types of access for 3 categories of users:
+
+User Types:
+Owner (u) – the user who owns the file
+
+Group (g) – users in the file’s group
+
+Others (o) – everyone else
+
+Permission Types:
+
+Symbol	Name	Description
+r(4)	Read	View file contents or list directory
+w(2)Write	Modify file contents or create/delete files in a directory
+x(1)	Execute	Run the file (if it's a script/binary) or enter a directory
+
+📄 File Example
+
+$ ls -l file1.txt
+-rw-r--r-- 1 ram devops  12 Jul 10 08:00 file1.txt
+
+Breakdown:
+-rw-r--r-- = Permissions
+
+- : regular file
+
+rw- : owner has read and write
+
+r-- : group has read
+
+r-- : others have read
+
+ram is the owner
+
+devops is the group
+
+Directory Example
+
+
+$ ls -ld myfolder
+drwxr-xr-x 2 ram devops 4096 Jul 10 08:00 myfolder
+d : directory
+
+rwx : owner can read, write, and enter/execute
+
+r-x : group can read and enter/execute
+
+r-x : others can read and enter
+
+Changing Permissions
+
+Use chmod (change mode)
+
+# Add execute permission to the owner
+chmod u+x file.sh
+
+# Remove write permission from others
+chmod o-w file1.txt
+
+# Set exact permission using numbers
+chmod 755 file.sh
+
+Permission Number Mapping:
+Symbol	Binary	Decimal
+---	000	0
+--x	001	1
+-w-	010	2
+-wx	011	3
+r--	100	4
+r-x	101	5
+rw-	110	6
+rwx	111	7
+
+Example: chmod 755 file.sh = rwxr-xr-x
+
+Changing Ownership
+
+# Change owner
+chown ram file1.txt
+
+# Change group
+chown :devops file1.txt
+
+# Change both
+chown ram:devops file1.txt
+
+ Common Examples
+ 
+Task	Command
+
+Make a file executable	chmod +x script.sh
+Make a folder readable to all	chmod 755 myfolder
+Restrict file to owner only	chmod 600 secrets.txt
+Make directory writable by group	chmod 775 mydir
+Recursively set folder permissions	chmod -R 755 /var/www
+

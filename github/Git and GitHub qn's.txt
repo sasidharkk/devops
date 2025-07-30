@@ -1,0 +1,168 @@
+Git and GitHub qn's
+1.What is Git?
+
+Git is a distributed version control system (DVCS) used to track changes in source code during software development. It allows multiple developers to collaborate on projects efficiently.
+
+2.What is a repository in Git?
+
+A repository (or repo) is a storage location where Git keeps all the files and their revision history for a project. It can be local (on your machine) or remote (on a server like GitHub).
+
+3.What is the difference between Git and GitHub?
+
+Git is a version control system, while GitHub is a cloud-based platform that hosts Git repositories and provides collaboration features like pull requests, issue tracking, and code review.
+
+4.What is a commit in Git?
+
+A commit is a snapshot of the changes made to the files in a repository. It includes a unique hash, a commit message, and references to previous commits.
+
+5.What is the difference between git pull and git fetch?
+
+git fetch downloads changes from a remote repository but does not merge them into your working directory.
+
+git pull downloads changes and automatically merges them into your current branch.
+
+6.What is a branch in Git?
+
+A branch is a parallel version of the repository. It allows you to work on new features or fixes without affecting the main codebase (usually the main or master branch).
+
+7.How do you create a new branch and switch to it?
+
+Use the command:
+git checkout -b <branch-name>
+Alternatively, in newer versions of Git:
+git switch -c <branch-name>
+
+8.What is a merge conflict, and how do you resolve it?
+
+A merge conflict occurs when Git cannot automatically merge changes from different branches. To resolve it:
+Open the conflicting file(s).
+Manually edit the file to resolve the conflict.
+Mark the conflict as resolved using git add <file>.
+Complete the merge with git commit.
+
+9.What is the purpose of .gitignore?
+
+The .gitignore file specifies files and directories that Git should ignore and not track. This is useful for excluding temporary files, logs, or sensitive data.
+
+10.What is the difference between git reset and git revert?
+
+git reset moves the branch pointer to a previous commit, discarding subsequent commits.
+
+git revert creates a new commit that undoes the changes made in a previous commit, preserving the commit history.
+
+GitHub Questions
+1.What is a pull request (PR)?
+
+A pull request is a feature of GitHub that allows developers to propose changes to a repository. It enables code review and discussion before merging the changes into the main branch.
+
+2.What is a fork in GitHub?
+
+A fork is a copy of a repository that allows you to freely experiment with changes without affecting the original project. You can propose changes to the original repository via pull requests.
+
+3.What is the difference between clone and fork?
+
+clone creates a local copy of a repository on your machine.
+
+fork creates a copy of a repository under your GitHub account.
+
+4.How do you sync a forked repository with the original repository?
+
+Add the original repository as a remote:
+
+
+git remote add upstream <original-repo-url>
+Fetch changes from the original repository:
+
+
+git fetch upstream
+Merge changes into your branch:
+git merge upstream/main
+
+5.What is GitHub Actions?
+
+GitHub Actions is a CI/CD (Continuous Integration/Continuous Deployment) tool that automates workflows, such as testing, building, and deploying code.
+
+Advanced Git Questions
+
+1.What is a rebase in Git?
+
+Rebasing is the process of moving or combining a sequence of commits to a new base commit. It is often used to maintain a linear commit history.
+
+2.What is the difference between git merge and git rebase?
+
+git merge combines changes from different branches and creates a merge commit.
+
+git rebase rewrites the commit history by applying changes from one branch onto another, creating a linear history.
+
+3.What is a detached HEAD state?
+
+A detached HEAD occurs when you check out a specific commit instead of a branch. You are not on any branch, and new commits will not be associated with any branch unless you create one.
+
+4.What is a stash in Git?
+
+git stash temporarily saves changes that are not ready to be committed, allowing you to switch branches or perform other tasks without losing your work.
+
+5.What is the purpose of git cherry-pick?
+
+git cherry-pick applies a specific commit from one branch to another. It is useful for picking individual changes without merging entire branches.
+
+6.What is the difference between git diff and git status?
+
+git status shows the current state of the working directory and staging area.
+
+git diff shows the differences between files (e.g., working directory vs. staging area or between commits).
+
+7.What is a Git hook?
+
+Git hooks are scripts that run automatically before or after specific Git events (e.g., pre-commit, post-commit). They are used to enforce workflows or automate tasks.
+
+8.How do you squash commits in Git?
+
+Use an interactive rebase:
+
+git rebase -i HEAD~<number-of-commits>
+
+Mark the commits you want to squash with squash or s.
+
+9.What is the purpose of git bisect?
+
+git bisect helps you find the commit that introduced a bug by performing a binary search through the commit history.
+
+10.What is the difference between git reflog and git log?
+
+git log shows the commit history of the current branch.
+
+git reflog records all changes to the repository's references (e.g., branch updates, commits, resets), even if they are no longer part of the commit history.
+
+Scenario-Based Questions
+
+1.How would you revert a commit that has already been pushed to a remote repository?
+
+Use git revert <commit-hash> to create a new commit that undoes the changes. Then, push the new commit to the remote repository.
+
+2.What would you do if you accidentally committed sensitive information (e.g., passwords) to a repository?
+
+Use git filter-branch or the BFG Repo-Cleaner to remove the sensitive information from the commit history. Force-push the corrected history to the remote repository.
+
+3.How do you resolve a merge conflict?
+
+Open the conflicting file, manually resolve the conflict, mark it as resolved with git add, and complete the merge with git commit.
+
+4.How do you delete a branch locally and remotely?
+
+Locally:
+
+git branch -d <branch-name>
+Remotely:
+
+git push origin --delete <branch-name>
+
+5.How do you find a specific commit in the Git history?
+
+Use git log to search through commit messages or git log --grep=<keyword> to search for a specific keyword.
+
+Best Practices
+
+6.Why is it important to write meaningful commit messages?
+
+Meaningful commit messages help other developers (and your future self) understand the purpose of the changes, making it easier to debug and maintain the codebase.
